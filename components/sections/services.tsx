@@ -34,15 +34,15 @@ export default function Services() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.25 }}
-      className="bg-zinc-50 py-20 md:py-28"
+      className="scroll-mt-20 bg-zinc-50 py-12 sm:py-20 md:py-28"
     >
       <Container>
-        <div className="flex items-end justify-between gap-8">
+        <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
           <div>
             <div className="inline-flex items-center rounded-full border border-zinc-950/10 bg-white px-3 py-1 text-xs font-medium text-zinc-950/70">
               Servicios
             </div>
-            <h2 className="mt-5 font-display text-3xl text-zinc-950 md:text-4xl">
+            <h2 className="mt-5 font-display text-2xl text-zinc-950 sm:text-3xl md:text-4xl">
               Todo lo que necesitas
               <br />
               en un mismo lugar.

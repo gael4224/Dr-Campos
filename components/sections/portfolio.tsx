@@ -35,7 +35,7 @@ export default function Portfolio() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
-      className="bg-white py-20 md:py-28"
+      className="scroll-mt-20 bg-white py-12 sm:py-20 md:py-28"
     >
       <Container>
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">

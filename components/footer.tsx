@@ -14,11 +14,11 @@ const LINKS = [
 export default function Footer() {
   return (
     <footer className="border-t border-zinc-950/10 bg-white">
-      <div className="container py-12">
-        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+      <div className="container py-8 sm:py-12">
+        <div className="flex flex-col gap-8 sm:gap-10 md:flex-row md:items-start md:justify-between">
           <div className="space-y-3">
             <div className="text-xs font-semibold tracking-premium text-zinc-950">
-              DR. NOMBRE APELLIDO
+              DR. JORGE ALBERTO CAMPOS CASTELLANOS
             </div>
             <p className="max-w-sm text-sm text-zinc-950/60">
               Consulta especializada con enfoque humano y tecnología de última generación
@@ -27,7 +27,7 @@ export default function Footer() {
             <p className="text-xs text-zinc-950/50">© {new Date().getFullYear()}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-10 md:grid-cols-3">
+          <div className="grid grid-cols-2 gap-6 sm:gap-10 md:grid-cols-3">
             <div className="space-y-3">
               <div className="text-xs font-semibold text-zinc-950/70">Navegación</div>
               <div className="flex flex-col gap-2">

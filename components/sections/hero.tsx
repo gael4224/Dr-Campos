@@ -19,7 +19,7 @@ export default function Hero() {
       className="relative overflow-hidden pt-14"
     >
       {/* Parte superior: fondo hospital + solo imágenes y nombre del doctor */}
-      <div className="relative min-h-[380px] md:min-h-[420px]">
+      <div className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[420px]">
         <div className="absolute inset-0">
           {!hospitalError ? (
             <Image
@@ -36,8 +36,8 @@ export default function Hero() {
           )}
         </div>
 
-        <Container className="relative z-10 flex h-full min-h-[340px] items-start pt-8 md:pt-10">
-          <div className="flex w-full flex-col items-center gap-8 md:flex-row md:justify-between md:gap-12">
+        <Container className="relative z-10 flex h-full min-h-[280px] sm:min-h-[340px] items-start pt-6 sm:pt-8 md:pt-10">
+          <div className="flex w-full flex-col items-center gap-5 sm:gap-8 md:flex-row md:justify-between md:gap-12">
             {/* Foto del doctor */}
             <MotionDiv
               initial={{ y: 12, opacity: 0 }}
@@ -45,8 +45,8 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="shrink-0"
             >
-              <div className="relative overflow-hidden rounded-xl border-4 border-white bg-white p-1 shadow-xl">
-                <div className="relative h-[220px] w-[180px] md:h-[280px] md:w-[220px]">
+              <div className="relative overflow-hidden rounded-xl border-2 border-white bg-white p-1 shadow-xl sm:border-4">
+                <div className="relative h-[160px] w-[130px] sm:h-[220px] sm:w-[180px] md:h-[280px] md:w-[220px]">
                   {!doctorError ? (
                     <Image
                       src="/doctor.jpg"
@@ -70,9 +70,9 @@ export default function Hero() {
               initial={{ y: 12, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="text-center md:text-left"
+              className="max-w-full text-center md:text-left"
             >
-              <p className="font-display text-3xl font-bold leading-tight text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.6)] md:text-4xl lg:text-5xl">
+              <p className="font-display text-xl font-bold leading-tight text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.6)] sm:text-2xl md:text-4xl lg:text-5xl">
                 Dr. Jorge Alberto Campos Castellanos
               </p>
             </MotionDiv>
@@ -84,7 +84,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="shrink-0"
             >
-              <div className="relative h-52 w-52 md:h-72 md:w-72 lg:h-96 lg:w-96">
+              <div className="relative h-32 w-32 sm:h-52 sm:w-52 md:h-72 md:w-72 lg:h-96 lg:w-96">
                 {!logoError ? (
                   <Image
                     src="/logo.png"
@@ -106,13 +106,13 @@ export default function Hero() {
       </div>
 
       {/* Parte inferior: especialidades y consulta centrados */}
-      <div className="border-t border-zinc-200 bg-white py-8 md:py-10">
+      <div className="border-t border-zinc-200 bg-white py-6 sm:py-8 md:py-10">
         <Container>
-          <div className="flex flex-col items-center gap-5 text-center md:gap-6">
-            <p className="text-lg font-semibold text-zinc-900 md:text-xl">
+          <div className="flex flex-col items-center gap-4 text-center sm:gap-5 md:gap-6">
+            <p className="text-base font-semibold text-zinc-900 sm:text-lg md:text-xl">
               Médico Urólogo de Alta Especialidad
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
               {[
                 { href: "#endourologia", label: "Endourología" },
                 { href: "#oncologia", label: "Oncología" },
@@ -123,7 +123,7 @@ export default function Hero() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-primary-hover hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 md:text-base"
+                  className="min-h-[44px] min-w-[44px] rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-primary-hover hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 md:px-5 md:py-3 md:text-base"
                 >
                   {item.label}
                 </a>
@@ -131,7 +131,7 @@ export default function Hero() {
             </div>
             <a
               href="#consulta"
-              className="group inline-flex max-w-3xl items-center justify-center rounded-full border-2 border-primary bg-primary/5 px-5 py-3 text-center text-sm font-medium text-primary transition hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 md:text-base"
+              className="group inline-flex min-h-[44px] max-w-3xl items-center justify-center rounded-full border-2 border-primary bg-primary/5 px-4 py-3 text-center text-sm font-medium text-primary transition hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 sm:px-5 md:text-base"
             >
               <span>
                 Consulta para evaluación del Sistema Génito – Urinario detallada para diagnosticar con la mayor precisión y brevedad los padecimientos relacionados.

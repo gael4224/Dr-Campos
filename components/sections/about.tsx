@@ -10,7 +10,7 @@ export default function About() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.35 }}
-      className="bg-white py-20 md:py-28"
+      className="scroll-mt-20 bg-white py-12 sm:py-20 md:py-28"
     >
       <Container>
         <div className="grid gap-10 md:grid-cols-12 md:gap-14">
@@ -25,7 +25,7 @@ export default function About() {
             <div className="inline-flex items-center rounded-full border border-zinc-950/10 bg-white px-3 py-1 text-xs font-medium text-zinc-950/70">
               Sobre mí
             </div>
-            <h2 className="mt-5 font-display text-3xl leading-tight text-zinc-950 md:text-4xl">
+            <h2 className="mt-5 font-display text-2xl leading-tight text-zinc-950 sm:text-3xl md:text-4xl">
               Medicina basada en evidencia,
               <br />
               explicada con cercanía.
@@ -41,9 +41,12 @@ export default function About() {
             className="space-y-5 text-base leading-relaxed text-zinc-950/70 md:col-span-7 md:text-[1.05rem]"
           >
             <p>
-              El Dr. Nombre Apellido es especialista en [especialidad] con formación en
-              hospitales de referencia y una trayectoria centrada en el bienestar
-              integral de cada paciente.
+              El Dr. Jorge Alberto Campos Castellanos es urólogo de alta
+              especialidad con formación en el Hospital Clinic de Barcelona
+              (calificación Sobresaliente), subespecialización en Endourología
+              en Clínica la Luz (Madrid) y en Cirugía Robótica en Cleveland
+              Clinic (Ohio). Certificado por el Consejo Mexicano de Urología
+              desde 1990 y con más de 35 años de experiencia.
             </p>
             <p>
               Cada consulta está diseñada para escuchar con calma, explicar con

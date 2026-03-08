@@ -93,7 +93,7 @@ function BloqueEspecialidad({
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
-      className="scroll-mt-24 border-b border-zinc-200/80 py-12 md:py-16"
+      className="scroll-mt-20 border-b border-zinc-200/80 py-10 sm:py-12 md:py-16"
     >
       <Container>
         <MotionDiv
@@ -175,7 +175,7 @@ export default function EspecialidadesDetalle() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
-        className="scroll-mt-24 border-b border-zinc-200/80 py-12 md:py-16"
+        className="scroll-mt-24 border-b border-zinc-200/80 pt-20 pb-10 sm:pt-24 sm:pb-12 md:pt-28 md:pb-16"
       >
         <Container>
           <MotionDiv

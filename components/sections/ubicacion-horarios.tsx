@@ -11,7 +11,7 @@ export default function UbicacionHorarios() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
-      className="scroll-mt-24 border-b border-zinc-200 bg-white py-14 md:py-20"
+      className="scroll-mt-20 border-b border-zinc-200 bg-white py-10 sm:py-14 md:py-20"
     >
       <Container>
         <MotionDiv

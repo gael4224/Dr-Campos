@@ -15,7 +15,12 @@ body {
 }
 
 .container {
-  @apply mx-auto w-full max-w-6xl px-6;
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+}
+
+/* Evitar overflow horizontal en móvil */
+html, body {
+  overflow-x: hidden;
 }
 
 .grain {

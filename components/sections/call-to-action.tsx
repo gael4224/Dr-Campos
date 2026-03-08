@@ -11,10 +11,10 @@ export default function CallToAction() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.3 }}
-      className="bg-zinc-950 py-20 md:py-28"
+      className="scroll-mt-20 bg-zinc-950 py-12 sm:py-20 md:py-28"
     >
       <Container>
-        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-10 shadow-hero md:p-14">
+        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 shadow-hero sm:p-10 md:p-14">
           <div className="pointer-events-none absolute inset-0 opacity-[0.16] grain" />
           <div className="pointer-events-none absolute -right-40 -top-40 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
           <div className="pointer-events-none absolute -left-40 -bottom-40 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
