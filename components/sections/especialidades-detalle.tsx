@@ -1,13 +1,140 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Container from "@/components/ui/container";
 import { whatsappUrl } from "@/lib/constants";
+
+// Visor de imagen a pantalla completa con zoom
+function LightboxImagen({
+  src,
+  titulo,
+  onCerrar,
+}: {
+  src: string;
+  titulo: string;
+  onCerrar: () => void;
+}) {
+  const [zoom, setZoom] = useState(1);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [arrastrando, setArrastrando] = useState(false);
+  const [inicioArr, setInicioArr] = useState({ x: 0, y: 0 });
+
+  const zoomIn = useCallback(() => setZoom((z) => Math.min(z + 0.35, 4)), []);
+  const zoomOut = useCallback(() => setZoom((z) => Math.max(z - 0.35, 0.4)), []);
+  const resetZoom = useCallback(() => {
+    setZoom(1);
+    setPos({ x: 0, y: 0 });
+  }, []);
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onCerrar();
+      if (e.key === "+" || e.key === "=") zoomIn();
+      if (e.key === "-") zoomOut();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [onCerrar, zoomIn, zoomOut]);
+
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    if (e.deltaY < 0) zoomIn();
+    else zoomOut();
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (zoom <= 1) return;
+    setArrastrando(true);
+    setInicioArr({ x: e.clientX - pos.x, y: e.clientY - pos.y });
+  };
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!arrastrando) return;
+    setPos({ x: e.clientX - inicioArr.x, y: e.clientY - inicioArr.y });
+  };
+  const handleMouseUp = () => setArrastrando(false);
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex flex-col bg-black/95"
+      onClick={(e) => e.target === e.currentTarget && onCerrar()}
+    >
+      {/* Barra superior: título y controles */}
+      <div className="flex shrink-0 items-center justify-between gap-4 border-b border-white/10 px-4 py-3">
+        <p className="truncate text-sm font-medium text-white md:text-base">
+          {titulo}
+        </p>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={zoomOut}
+            className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white transition hover:bg-white/20"
+            aria-label="Alejar"
+          >
+            −
+          </button>
+          <span className="min-w-[3rem] text-center text-sm text-white">
+            {Math.round(zoom * 100)}%
+          </span>
+          <button
+            type="button"
+            onClick={zoomIn}
+            className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white transition hover:bg-white/20"
+            aria-label="Acercar"
+          >
+            +
+          </button>
+          <button
+            type="button"
+            onClick={resetZoom}
+            className="rounded-lg bg-white/10 px-3 py-1.5 text-xs text-white transition hover:bg-white/20"
+          >
+            Reiniciar
+          </button>
+          <button
+            type="button"
+            onClick={onCerrar}
+            className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white transition hover:bg-white/20"
+            aria-label="Cerrar"
+          >
+            ✕
+          </button>
+        </div>
+      </div>
+
+      {/* Área de la imagen con scroll y zoom — clic en el fondo cierra */}
+      <div
+        className="flex flex-1 items-center justify-center overflow-hidden p-4"
+        onWheel={handleWheel}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        onClick={(e) => e.target === e.currentTarget && onCerrar()}
+        style={{ cursor: zoom > 1 && arrastrando ? "grabbing" : zoom > 1 ? "grab" : "default" }}
+      >
+        <img
+          src={src}
+          alt={titulo}
+          className="max-h-full max-w-full select-none object-contain transition-transform"
+          style={{
+            transform: `translate(${pos.x}px, ${pos.y}px) scale(${zoom})`,
+          }}
+          draggable={false}
+          onClick={(e) => e.stopPropagation()}
+        />
+      </div>
+
+      <p className="shrink-0 pb-2 text-center text-xs text-white/60">
+        Rueda del ratón o +/− para zoom · Arrastra si está ampliado · Esc para cerrar
+      </p>
+    </div>
+  );
+}
 
 const ESPECIALIDADES = [
   {
     id: "endourologia",
-    imagen: "/especialidades/endourologia.svg",
+    imagen: "/especialidades/endourologia.jpeg",
     titulo: "Endourología",
     descripcion: "La endourología permite diagnosticar y tratar patologías del tracto urinario mediante instrumentos mínimamente invasivos, sin incisiones grandes. Incluye procedimientos como litotricia, ureteroscopia y cirugía endoscópica de próstata.",
     causas: [
@@ -33,7 +160,7 @@ const ESPECIALIDADES = [
   },
   {
     id: "cirugia-laparoscopica",
-    imagen: "/especialidades/cirugia-laparoscopica.svg",
+    imagen: "/especialidades/laparoscopica.jpeg",
     titulo: "Cirugía laparoscópica",
     descripcion: "Técnica mínimamente invasiva con pequeñas incisiones y cámara, para procedimientos como nefrectomía, prostatectomía, cirugía de glándula suprarrenal y corrección de patologías renales o ureterales.",
     causas: [
@@ -59,7 +186,7 @@ const ESPECIALIDADES = [
   },
   {
     id: "cirugia-robotica",
-    imagen: "/especialidades/cirugia-robotica.svg",
+    imagen: "/especialidades/robotica.jpeg",
     titulo: "Cirugía robótica",
     descripcion: "Cirugía asistida por robot para máxima precisión en prostatectomía radical, nefrectomía parcial, cirugía de vejiga y procedimientos reconstructivos. Menor pérdida de sangre y recuperación más favorable en casos seleccionados.",
     causas: [
@@ -79,9 +206,11 @@ function MensajeWhatsApp(especialidad: string): string {
 function BloqueEspecialidad({
   esp,
   index,
+  onImageClick,
 }: {
   esp: (typeof ESPECIALIDADES)[number];
   index: number;
+  onImageClick: (src: string, titulo: string) => void;
 }) {
   const [imagenError, setImagenError] = useState(false);
 
@@ -129,14 +258,27 @@ function BloqueEspecialidad({
             </div>
           </div>
 
-          <div className={`relative aspect-[4/3] overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100 ${index % 2 === 1 ? "md:order-1" : ""}`}>
+          <div
+            className={`relative aspect-[4/3] overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100 ${index % 2 === 1 ? "md:order-1" : ""} ${!imagenError ? "cursor-zoom-in" : ""}`}
+            role={!imagenError ? "button" : undefined}
+            tabIndex={!imagenError ? 0 : undefined}
+            onClick={() => !imagenError && onImageClick(esp.imagen, esp.titulo)}
+            onKeyDown={(e) => !imagenError && (e.key === "Enter" || e.key === " ") && onImageClick(esp.imagen, esp.titulo)}
+          >
             {!imagenError ? (
-              <img
-                src={esp.imagen}
-                alt={`Imagen ilustrativa - ${esp.titulo}`}
-                className="absolute inset-0 h-full w-full object-cover"
-                onError={() => setImagenError(true)}
-              />
+              <>
+                <img
+                  src={esp.imagen}
+                  alt={`Imagen ilustrativa - ${esp.titulo}`}
+                  className="absolute inset-0 h-full w-full object-cover transition hover:opacity-95"
+                  onError={() => setImagenError(true)}
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition hover:bg-black/20">
+                  <span className="rounded-full bg-white/90 px-3 py-1.5 text-xs font-medium text-zinc-800 opacity-0 transition hover:opacity-100">
+                    Ver imagen completa
+                  </span>
+                </div>
+              </>
             ) : (
               <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-zinc-200/80 p-6 text-center text-zinc-500">
                 <span className="text-sm font-medium">Imagen ilustrativa</span>
@@ -153,11 +295,26 @@ function BloqueEspecialidad({
 }
 
 export default function EspecialidadesDetalle() {
+  const [lightbox, setLightbox] = useState<{ src: string; titulo: string } | null>(null);
+
   return (
     <div className="bg-zinc-50">
       {ESPECIALIDADES.map((esp, i) => (
-        <BloqueEspecialidad key={esp.id} esp={esp} index={i} />
+        <BloqueEspecialidad
+          key={esp.id}
+          esp={esp}
+          index={i}
+          onImageClick={(src, titulo) => setLightbox({ src, titulo })}
+        />
       ))}
+
+      {lightbox && (
+        <LightboxImagen
+          src={lightbox.src}
+          titulo={lightbox.titulo}
+          onCerrar={() => setLightbox(null)}
+        />
+      )}
 
       <section
         id="consulta"
