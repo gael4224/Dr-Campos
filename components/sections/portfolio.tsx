@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Container from "@/components/ui/container";
-import { MotionSection, MotionDiv } from "@/components/ui/motion";
 import { cn } from "@/components/ui/cn";
 
 const PROJECTS = [
@@ -30,11 +29,8 @@ const PROJECTS = [
 
 export default function Portfolio() {
   return (
-    <MotionSection
+    <section
       id="work"
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
       className="scroll-mt-20 bg-white py-12 sm:py-20 md:py-28"
     >
       <Container>
@@ -57,17 +53,8 @@ export default function Portfolio() {
           {PROJECTS.map((p, i) => {
             const big = i === 0 || i === 3;
             return (
-              <MotionDiv
+              <div
                 key={p.title}
-                variants={{
-                  hidden: { opacity: 0, y: 16 },
-                  show: { opacity: 1, y: 0 },
-                }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.05 + i * 0.04,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
                 className={cn(
                   "group relative overflow-hidden rounded-2xl border border-zinc-950/10 bg-zinc-950",
                   big ? "md:col-span-7" : "md:col-span-5"
@@ -98,12 +85,12 @@ export default function Portfolio() {
                     </div>
                   </div>
                 </div>
-              </MotionDiv>
+              </div>
             );
           })}
         </div>
       </Container>
-    </MotionSection>
+    </section>
   );
 }
 

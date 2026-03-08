@@ -1,7 +1,6 @@
 "use client";
 
 import Container from "@/components/ui/container";
-import { MotionSection, MotionDiv } from "@/components/ui/motion";
 import { cn } from "@/components/ui/cn";
 
 const SERVICES = [
@@ -29,11 +28,8 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <MotionSection
+    <section
       id="servicios"
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.25 }}
       className="scroll-mt-20 bg-zinc-50 py-12 sm:py-20 md:py-28"
     >
       <Container>
@@ -55,18 +51,9 @@ export default function Services() {
         </div>
 
         <div className="mt-12 grid gap-4 md:grid-cols-2">
-          {SERVICES.map((s, i) => (
-            <MotionDiv
+          {SERVICES.map((s) => (
+            <div
               key={s.title}
-              variants={{
-                hidden: { opacity: 0, y: 14 },
-                show: { opacity: 1, y: 0 },
-              }}
-              transition={{
-                duration: 0.55,
-                delay: 0.05 + i * 0.05,
-                ease: [0.22, 1, 0.36, 1],
-              }}
               className={cn(
                 "group relative overflow-hidden rounded-2xl border border-zinc-950/10 bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,.04)] transition",
                 "hover:-translate-y-0.5 hover:border-zinc-950/20 hover:shadow-soft"
@@ -83,11 +70,11 @@ export default function Services() {
               <div className="mt-4 text-xs font-medium tracking-premium text-zinc-950/60">
                 Más información
               </div>
-            </MotionDiv>
+            </div>
           ))}
         </div>
       </Container>
-    </MotionSection>
+    </section>
   );
 }
 

@@ -2,15 +2,11 @@
 
 import Container from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-import { MotionSection, MotionDiv } from "@/components/ui/motion";
 
 export default function CallToAction() {
   return (
-    <MotionSection
+    <section
       id="contacto"
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.3 }}
       className="scroll-mt-20 bg-zinc-950 py-12 sm:py-20 md:py-28"
     >
       <Container>
@@ -20,14 +16,7 @@ export default function CallToAction() {
           <div className="pointer-events-none absolute -left-40 -bottom-40 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
 
           <div className="relative grid gap-10 md:grid-cols-12 md:items-end">
-            <MotionDiv
-              variants={{
-                hidden: { opacity: 0, y: 14 },
-                show: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="md:col-span-8"
-            >
+            <div className="md:col-span-8">
               <div className="text-xs font-medium tracking-premium text-white/70">
                 AGENDA TU CONSULTA
               </div>
@@ -41,20 +30,9 @@ export default function CallToAction() {
                 confirmación de tu cita y, si es necesario, indicaciones previas a la
                 consulta.
               </p>
-            </MotionDiv>
+            </div>
 
-            <MotionDiv
-              variants={{
-                hidden: { opacity: 0, y: 14 },
-                show: { opacity: 1, y: 0 },
-              }}
-              transition={{
-                duration: 0.65,
-                delay: 0.05,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="flex flex-col gap-3 md:col-span-4 md:items-end"
-            >
+            <div className="flex flex-col gap-3 md:col-span-4 md:items-end">
               <Button href="#contacto" variant="ghost" size="lg" className="w-full md:w-auto">
                 Agendar cita
               </Button>
@@ -69,11 +47,11 @@ export default function CallToAction() {
               <div className="text-xs text-white/60 md:text-right">
                 contacto@clinicadeldoctor.example
               </div>
-            </MotionDiv>
+            </div>
           </div>
         </div>
       </Container>
-    </MotionSection>
+    </section>
   );
 }
 

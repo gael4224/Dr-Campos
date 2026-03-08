@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Container from "@/components/ui/container";
-import { MotionSection, MotionDiv } from "@/components/ui/motion";
 import { cn } from "@/components/ui/cn";
 import {
   EXAMENES_ACREDITADOS,
@@ -45,19 +44,12 @@ export default function TrabajosDelDoctor() {
     : CONGRESOS.slice(0, CONGRESOS_VISIBLES_INICIAL);
 
   return (
-    <MotionSection
+    <section
       id="trabajos"
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.15 }}
       className="scroll-mt-20 border-b border-zinc-200 bg-zinc-50 py-10 sm:py-14 md:py-20"
     >
       <Container>
-        <MotionDiv
-          variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
-          transition={{ duration: 0.4 }}
-          className="mb-10 text-center"
-        >
+        <div className="mb-10 text-center">
           <h2 className="font-display text-2xl font-semibold text-zinc-900 md:text-3xl">
             Trabajos y trayectoria
           </h2>
@@ -65,17 +57,12 @@ export default function TrabajosDelDoctor() {
             Cirugías, patentes, exámenes acreditados, congresos y participación
             en la comunidad urológica.
           </p>
-        </MotionDiv>
+        </div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {BLOQUES.map((bloque, i) => (
-            <MotionDiv
+          {BLOQUES.map((bloque) => (
+            <div
               key={bloque.id}
-              variants={{
-                hidden: { opacity: 0, y: 14 },
-                show: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.4, delay: i * 0.06 }}
               className={cn(
                 "rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:shadow-md"
               )}
@@ -84,16 +71,12 @@ export default function TrabajosDelDoctor() {
                 {bloque.titulo}
               </h3>
               <p className="mt-3 text-zinc-600">{bloque.descripcion}</p>
-            </MotionDiv>
+            </div>
           ))}
         </div>
 
         {/* Contribución científica */}
-        <MotionDiv
-          variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
-          transition={{ duration: 0.4 }}
-          className="mt-12 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm md:p-8"
-        >
+        <div className="mt-12 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
           <h3 className="font-display text-xl font-semibold text-zinc-900">
             Contribución científica
           </h3>
@@ -247,14 +230,10 @@ export default function TrabajosDelDoctor() {
               </ul>
             </div>
           </div>
-        </MotionDiv>
+        </div>
 
         {/* Exámenes acreditados */}
-        <MotionDiv
-          variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
-          transition={{ duration: 0.4 }}
-          className="mt-12 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm md:p-8"
-        >
+        <div className="mt-12 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
           <h3 className="font-display text-xl font-semibold text-zinc-900">
             Exámenes acreditados
           </h3>
@@ -269,14 +248,10 @@ export default function TrabajosDelDoctor() {
               </li>
             ))}
           </ol>
-        </MotionDiv>
+        </div>
 
         {/* Congresos y reuniones */}
-        <MotionDiv
-          variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
-          transition={{ duration: 0.4 }}
-          className="mt-8 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm md:p-8"
-        >
+        <div className="mt-8 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
           <h3 className="font-display text-xl font-semibold text-zinc-900">
             Congresos y reuniones
           </h3>
@@ -327,14 +302,10 @@ export default function TrabajosDelDoctor() {
               ))}
             </ul>
           </div>
-        </MotionDiv>
+        </div>
 
         {/* Comunicaciones y videos presentados en congresos */}
-        <MotionDiv
-          variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
-          transition={{ duration: 0.4 }}
-          className="mt-8 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm md:p-8"
-        >
+        <div className="mt-8 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
           <h3 className="font-display text-xl font-semibold text-zinc-900">
             Ponente en congresos
           </h3>
@@ -395,8 +366,8 @@ export default function TrabajosDelDoctor() {
               </div>
             ))}
           </div>
-        </MotionDiv>
+        </div>
       </Container>
-    </MotionSection>
+    </section>
   );
 }

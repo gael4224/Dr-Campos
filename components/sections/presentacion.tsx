@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Container from "@/components/ui/container";
-import { MotionSection, MotionDiv } from "@/components/ui/motion";
 import {
   FORMACION_PRINCIPAL,
   SUBESPECIALIDADES_FORMACION,
@@ -19,20 +18,12 @@ export default function Presentacion() {
     ? ESTUDIOS_ESPECIALIDAD_CURSOS
     : ESTUDIOS_ESPECIALIDAD_CURSOS.slice(0, ESTUDIOS_VISIBLES_INICIAL);
   return (
-    <MotionSection
+    <section
       id="presentacion"
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
       className="scroll-mt-20 border-b border-zinc-200 bg-white pt-20 pb-10 sm:pt-24 sm:pb-14 md:pt-28 md:pb-20"
     >
       <Container>
-        <div className="mx-auto max-w-3xl">
-          <MotionDiv
-            variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-8"
-          >
+        <div className="mx-auto max-w-3xl space-y-8">
             <div>
               <h2 className="font-display text-2xl font-semibold text-zinc-900 md:text-3xl">
                 ¿Qué hace un urólogo?
@@ -189,9 +180,8 @@ export default function Presentacion() {
                 </li>
               </ul>
             </div>
-          </MotionDiv>
         </div>
       </Container>
-    </MotionSection>
+    </section>
   );
 }
